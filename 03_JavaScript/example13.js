@@ -3,7 +3,13 @@ function buttonClicked() {
     
     var username_box = document.getElementById('username');
 
-    alert(username_box.value);
+    if (username_box.value.toUpperCase().trim() == "JAMIE") {
+        alert("you shall not pass.");
+    } else {
+        alert(username_box.value);
+    }
+
+    username_box.value = '';
 
 }
 

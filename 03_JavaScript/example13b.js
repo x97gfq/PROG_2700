@@ -2,20 +2,21 @@
 function buttonClicked() {
     var username_box = document.getElementById('username');
     
-    if (username_box.value != '') {
+    if (username_box != null) {
 
-        username_box.style.backgroundColor = 'white';
-
-        alert('Welcome, ' + username_box.value);
-
-        username_box.value = '';
-    } else {
-
-        username_box.style.backgroundColor = 'red';
-
-        alert('You m ust enter a username');
+        if (username_box.value.trim() != '') {
+        
+            username_box.style.backgroundColor = 'white';
+            alert('Welcome, ' + username_box.value);
+            username_box.value = '';
+    
+        } else {
+            
+            username_box.style.backgroundColor = 'yellow';
+            alert('You must enter a username');
+        
+        }
     }
-
 }
 
 window.addEventListener("load", function(event) {
