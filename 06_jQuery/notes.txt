@@ -1,0 +1,14 @@
+Demo:
+
+
+Crime Statistics - Incidents and rates for selected offences
+https://data.novascotia.ca/Crime-and-Justice/Crime-Statistics-Incidents-and-rates-for-selected-/m862-kmjy
+
+Developer Docs:
+https://dev.socrata.com/foundry/data.novascotia.ca/m862-kmjy
+
+SoQL: 
+
+
+https://data.novascotia.ca/resource/m862-kmjy.json?$where=geography%20like%20%27%25Barrington%25%27%20and%20year=%272021%27
+
