@@ -7,8 +7,8 @@ https://data.novascotia.ca/Crime-and-Justice/Crime-Statistics-Incidents-and-rate
 Developer Docs:
 https://dev.socrata.com/foundry/data.novascotia.ca/m862-kmjy
 
-SoQL: 
-
-
+SoQL Example: 
 https://data.novascotia.ca/resource/m862-kmjy.json?$where=geography%20like%20%27%25Barrington%25%27%20and%20year=%272021%27
+
+
 
