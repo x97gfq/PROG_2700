@@ -56,7 +56,10 @@ app.put('/api/contacts/:id', (req, res) => {
 app.delete('/api/contacts/:id', (req, res) => {
     console.log("DELETE", req.params)
     //find the index of the request item, and remove it.
-    const index = contacts.indexOf(req.body);
+    var index = 0;
+    for (var i = 0; i < contacts.length; i++) {
+        if (contacts[i].id == req.params.id) index = i;
+    }
     const x = contacts.splice(index, 1);
 
     //response is usually an empty record
