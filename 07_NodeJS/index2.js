@@ -7,7 +7,8 @@ var books =[
     { "title":"The Rise of Anti-Intellectualism in America", "author":"Richard Hofstadter"},
     { "title":"The Omnivore's Dilemma","author":"Michael Pollan"},
     { "title":"Reclaiming Conversation","author":"Sherry Turkle"},
-    { "title":"Ungrading", "author": "Susan D. Blum"}
+    { "title":"Ungrading", "author": "Susan D. Blum"},
+    { "title" : "In love with NodeJs", "author" : "Jamie"}
 ];
 
 var app = http.createServer(function(req,res){
@@ -24,6 +25,10 @@ var app = http.createServer(function(req,res){
     }
 
     if (['GET', 'POST'].indexOf(req.method) > -1) {
+        console.log("GOT A REQUEST!");
+        //
+        //
+        //
         res.writeHead(200, headers);
         res.end(JSON.stringify(books));
         return;

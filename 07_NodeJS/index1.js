@@ -1,7 +1,9 @@
 var http = require('http');
-console.log("lisetning on http://localhost:8080");
+
+console.log("listening on http://localhost:8080");
 
 http.createServer(function (req, res) {
+
     console.log("got a request");
 
     //responding
