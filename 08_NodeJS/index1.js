@@ -55,7 +55,6 @@ app.put('/api/contacts/:id', (req, res) => {
 
 app.delete('/api/contacts/:id', (req, res) => {
     console.log("DELETE", req.params)
-
     //find the index of the request item, and remove it.
     const index = contacts.indexOf(req.body);
     const x = contacts.splice(index, 1);
