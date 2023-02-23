@@ -43,5 +43,6 @@ app.post('/api/pledges', (req, res) => {
 })
 
 app.listen(5000, () => {
-    console.log('Listening on localhost:5000, try hitting the GET request at http://localhost:5000/api/contacts');
+    console.log('Listening on localhost:5000, try hitting the GET request at http://localhost:5000/api/pledges');
 });
+
