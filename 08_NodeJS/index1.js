@@ -10,7 +10,7 @@ var contacts =[
     { "id":1, "name":"Fred Flintstone", "email":"fred@bedrock.ca"},
     { "id":2, "name":"Wilma Flintstone", "email":"wilma@bedrock.ca"},
     { "id":3, "name":"Barney Rubble", "email":"Barney@bedrock.ca"},
-    { "id":4, "name":"Wilma Rubble", "email":"fred@bedrock.ca"}
+    { "id":4, "name":"Betty Rubble", "email":"fred@bedrock.ca"}
 ];
 
 app.get('/api/contacts', (req, res) => {
