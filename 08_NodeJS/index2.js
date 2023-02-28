@@ -1,89 +1,90 @@
-const express = require('express');
-const app = express();
-const cors = require('cors');
-const bodyParser = require('body-parser');
-
+const Express = require("express");
+const cors = require('cors')
+const BodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 const ObjectId = require("mongodb").ObjectID;
 
-const CONNECTION_URL = "";
-const DATABASE_NAME = "";
+const CONNECTION_URL = "mongodb://127.0.0.1:27017";
+const DATABASE_NAME = "contacts_db";
+const COLLECTION_NAME = "contacts";
 
-app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
+var app = Express();
+const http = require('http').createServer(app);
+
 app.use(cors());
+app.use(BodyParser.json({limit: '1mb'}));
+app.use(BodyParser.urlencoded({limit: '1mb', extended: true}));
 
 var database, collection;
 
 app.get('/api/contacts', (req, res) => {
-    collection.find({}).toArray((error, result) => {
-        if(error) {
-            return res.status(500).send(error);
-        }
-        res.send(result);
-    });
+  collection.find({}).toArray((error, result) => {
+      if(error) {
+          return res.status(500).send(error);
+      }
+      res.send(result);
+  });
 })
 
-app.get('/api/contacts/:id', (req, res) => {
-    var id = new ObjectId(request.params.id);
+app.get('/api/contacts/:id', (request, res) => {
+  var id = new ObjectId(request.params.id);
 
-    collection.findOne({ "id": id }, (error, result) => {
-        if(error) {
-            return res.status(500).send(error);
-        }
-        res.send(result);
-    });   
+  collection.findOne({ "_id": id }, (error, result) => {
+      if(error) {
+          return res.status(500).send(error);
+      }
+      res.send(result);
+  });   
 })
 
 app.post('/api/contacts', (req, res) => {
-    collection.insert(req.body, (error, result) => {
-        if(error) {
-            return res.status(500).send(error);
-        }
-        res.send(result.result);
-    });
+  collection.insert(req.body, (error, result) => {
+      if(error) {
+          return res.status(500).send(error);
+      }
+      res.send(req.body);
+  });
 })
 
 app.put('/api/contacts/:id', (req, res) => {
-    var id = new ObjectId(request.params.id);
+  var id = new ObjectId(req.params.id);
 
-    var myquery = { "id": id };
-    var newvalues = { $set: req.body };
-    collection.updateOne(myquery, newvalues, function(error, result) {
-        if(error) {
-            return res.status(500).send(error);
-        }
-        res.send(result.result);
-    });
+  var myquery = { "_id": id };
+  var newvalues = { $set: req.body };
+  collection.updateOne(myquery, newvalues, function(error, result) {
+      if(error) {
+          return res.status(500).send(error);
+      }
+      res.send(req.body);
+  });
 })
 
 app.delete('/api/contacts/:id', (req, res) => {
-    var id = new ObjectId(request.params.id);
+  var id = new ObjectId(req.params.id);
 
-    var myquery = { "id": id };
-    collection.deleteOne(myquery, function(error, result) {
-        if(error) {
-            return res.status(500).send(error);
-        }
-        res.send(result.result);
-    });
+  var myquery = { "_id": id };
+  collection.deleteOne(myquery, function(error, result) {
+      if(error) {
+          return res.status(500).send(error);
+      }
+      res.send(req.body);
+  });
 })
 
+http.listen(5000, () => {
+  MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {
+    if(error) {
+        throw error;
+    }
+    database = client.db(DATABASE_NAME);
+    collection = database.collection(COLLECTION_NAME);
 
-app.listen(5000, () => {
-    console.log("Connecting to database...")
-    MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
-        if(error) {
-            throw error;
-        }
-        database = client.db(DATABASE_NAME);
-        collection = database.collection("contacts");
-        console.log("Connected to `" + DATABASE_NAME + "`!");
-        console.log('Listening on localhost:5000, try http://localhost:5000/api/contacts');
-    }).then(dbc => {
-        console.log('SUCCESS');
-    }).catch(err => {
-        console.log('EXITING');
-    });;
+    console.log("Running on port 5000 - connected to `" + DATABASE_NAME + "`");
+  });
+});
+
+//get test page
+app.get("/", (request, response) => {
+    response.json({"message":"unknown request"});
 });
 

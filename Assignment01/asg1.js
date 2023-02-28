@@ -4,12 +4,12 @@ function convertTemperature(temperature, temperatureType) {
     if (temperatureType == "celcius") {
         val = (temperature * (9/5)) + 32;
     } else {
-        va = (temperature - 32) * (5/9);
+        val = (temperature - 32) * (5/9);
     }
     return val;
 };
 
-var result = convertTemperature(10, "celcius");
+var result = convertTemperature(12, "celcius");
 alert(result);
 
 var result1 = convertTemperature(65, "fahrenheit");
