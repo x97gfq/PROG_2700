@@ -36,7 +36,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'HomeView',
+  name: 'HospitalView',
   components: {
   },
   data() {
